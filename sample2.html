@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+window.onload = function test() {
+    navigator.geolocation.getCurrentPosition(test2);
+    
+}
+
+function test2(position) {
+
+    var latitude = 36;//緯度
+    var longitude = 139;//経度
+    var geo_text = position.coords.latitude;
+    var geo_text2 = position.coords.longitude;
+    
+
+    var date = new Date(position.timestamp);
+
+    var geo_text3 = date.toLocaleString() ;
+
+    //alert(geo_text);
+    let gps=document.getElementById("hyo");
+    gps.innerHTML="緯度:"+geo_text+"経度:"+geo_text2+"取得時刻:"+geo_text3;
+    console.log(geo_text);
+
+    
+    var Xerneas = Math.floor(geo_text) ;//ido切り捨て
+    var Yveltal = Math.ceil(geo_text) ;//いど切りあげ 
+    console.log(Xerneas);
+    console.log(Yveltal);   
+
+    var Xerneas2= Math.floor(geo_text2) ;//keido切り捨て
+    var Yveltal2=Math.ceil(geo_text2) ;//経度切り上げ
+
+    /*if(Xerneas<geo_text){
+        if(geo_text<Yveltal){
+            var output2 = document.getElementById("result2");
+            output2.innerHTML = 'Xerneas= ' +Xerneas + '<br>Yveltal= ' + Yveltal;
+            console.log(Xerneas);
+            console.log(Yveltal);
+        }
+    }*/
+    if(Xerneas<=latitude && latitude<=Yveltal && Xerneas2<=longitude && longitude<=Yveltal2){
+        
+        /*var output2 = document.getElementById("result2");
+            output2.innerHTML = '緯度切り捨て= ' +Xerneas + '<br>緯度切り上げ= ' + Yveltal+'<br>経度切り捨て='+Xerneas2+'<br>経度切り上げ='+Yveltal2+'<br>設定値緯度='+latitude+'<br>設定値経度='+longitude;
+            console.log(Xerneas);
+            console.log(Yveltal);
+            console.log(Xerneas2);
+            console.log(Yveltal2);*/
+            return true;
+    }
+
+}
+</script>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<div id="hyo"></div>
+<div id="result2"></div>
+
+</body>
+</html>
